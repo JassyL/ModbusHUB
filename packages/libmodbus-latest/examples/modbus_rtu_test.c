@@ -11,20 +11,20 @@ static void test_thread(void *param)
     modbus_t *ctx = RT_NULL;
     ctx = modbus_new_rtu("/dev/uart2", 115200, 'N', 8, 1);
     modbus_rtu_set_serial_mode(ctx, MODBUS_RTU_RS485);
-    modbus_rtu_set_rts(ctx, RS485_RE, MODBUS_RTU_RTS_UP);
-    modbus_set_slave(ctx, 3);
+    //modbus_rtu_set_rts(ctx, RS485_RE, MODBUS_RTU_RTS_UP);
+    modbus_set_slave(ctx, 1);
     modbus_connect(ctx);
-    modbus_set_response_timeout(ctx, 0, 1000000);
+    modbus_set_response_timeout(ctx, 0, 100000);
     int num = 0;
     while (1)
     {
         memset(tab_reg, 0, 64 * 2);
-        int regs = modbus_read_registers(ctx, 0, 20, tab_reg);
+        int regs = modbus_read_registers(ctx, 0, 10, tab_reg);
         printf("-------------------------------------------\n");
         printf("[%4d][read num = %d]", num, regs);
         num++;
         int i;
-        for (i = 0; i < 20; i++)
+        for (i = 0; i < 10; i++)
         {
             printf("<%#x>", tab_reg[i]);
         }
