@@ -473,6 +473,11 @@
               <FileType>1</FileType>
               <FilePath>applications\init.c</FilePath>
             </File>
+            <File>
+              <FileName>modbus_instance.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>applications\modbus_instance.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -682,11 +687,6 @@
         <Group>
           <GroupName>libmodbus</GroupName>
           <Files>
-            <File>
-              <FileName>modbus_rtu_test.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\libmodbus-latest\examples\modbus_rtu_test.c</FilePath>
-            </File>
             <File>
               <FileName>modbus.c</FileName>
               <FileType>1</FileType>

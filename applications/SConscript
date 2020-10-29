@@ -7,6 +7,7 @@ src     = Split("""
 main.c
 fal_flash_stm32f4_port.c
 init.c
+modbus_instance.c
 """)
 
 group = DefineGroup('Applications', src, depend = [''], CPPPATH = CPPPATH)
