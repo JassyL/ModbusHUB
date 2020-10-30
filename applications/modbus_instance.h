@@ -4,7 +4,7 @@
  * @Author: JunQi Liu
  * @Date: 2020-10-30 00:35:39
  * @LastEditors: JunQi Liu
- * @LastEditTime: 2020-10-30 02:14:45
+ * @LastEditTime: 2020-10-30 20:18:16
  */
 #ifndef __MODBUS_INSTANCE_H__
 #define __MODBUS_INSTANCE_H__
@@ -23,8 +23,19 @@
 03      A相电流
 04      B相电流
 05      C相电流
-06      总有功功率
-07      电网频率   
+06      A相有功
+07      B相有功
+08      C相有功
+09      A相无功
+10      B相无功
+11      C相无功
+12      A相功率因数
+13      B相功率因数
+14      C相功率因数
+
+15      总有功功率
+16      总无功功率
+17      电网频率   
 
 线圈
 |地址   |   定义    |

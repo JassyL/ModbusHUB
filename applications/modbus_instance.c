@@ -4,7 +4,7 @@
  * @Author: JunQi Liu
  * @Date: 2020-10-30 00:34:25
  * @LastEditors: JunQi Liu
- * @LastEditTime: 2020-10-30 02:57:49
+ * @LastEditTime: 2020-10-30 20:18:04
  */
 #include "modbus_instance.h"
 #include "modbus.h"
@@ -83,7 +83,7 @@ static void modbus_master_thread(void *parameter)
     {
         memset(ZM0201_parameters, 0, 5*10*2);
         memset(ZM0201_status, 0, 5*45*2);
-        for(index = 1; index <= 1; index ++)
+        for(index = 1; index <= 5; index ++)
         {
             modbus_set_slave(ctx, index);
             res = modbus_read_registers(ctx, 0, 10, ZM0201_parameters[index-1]);
@@ -117,15 +117,29 @@ static void modbus_master_thread(void *parameter)
             if(res != -1)
             {
                 //读取成功
-                mb_mapping->tab_registers[10*(index-1)+0] = raw16_to_int(ZM0201_status[index-1][0x2C-0x20]);
-                mb_mapping->tab_registers[10*(index-1)+1] = raw16_to_int(ZM0201_status[index-1][0x38-0x20]);
-                mb_mapping->tab_registers[10*(index-1)+2] = raw16_to_int(ZM0201_status[index-1][0x44-0x20]);
-                mb_mapping->tab_registers[10*(index-1)+3] = raw32_to_int(((rt_uint32_t)(ZM0201_status[index-1][0x2D-0x20])<<16) + ZM0201_status[index-1][46-0x20]);
-                mb_mapping->tab_registers[10*(index-1)+4] = raw32_to_int(((rt_uint32_t)(ZM0201_status[index-1][0x39-0x20])<<16) + ZM0201_status[index-1][0x3A-0x20]);
-                mb_mapping->tab_registers[10*(index-1)+5] = raw32_to_int(((rt_uint32_t)(ZM0201_status[index-1][0x45-0x20])<<16) + ZM0201_status[index-1][0x46-0x20]);
-                mb_mapping->tab_registers[10*(index-1)+6] = raw32_to_int_4point(((rt_uint32_t)(ZM0201_status[index-1][0x24-0x20])<<16) + ZM0201_status[index-1][0x25-0x20]);
-                mb_mapping->tab_registers[10*(index-1)+7] = raw16_to_int(ZM0201_status[index-1][0x4C-0x20]);
+                mb_mapping->tab_registers[20*(index-1)+0] = raw16_to_int(ZM0201_status[index-1][0x2C-0x20]);
+                mb_mapping->tab_registers[20*(index-1)+1] = raw16_to_int(ZM0201_status[index-1][0x38-0x20]);
+                mb_mapping->tab_registers[20*(index-1)+2] = raw16_to_int(ZM0201_status[index-1][0x44-0x20]);
+                mb_mapping->tab_registers[20*(index-1)+3] = raw32_to_int(((rt_uint32_t)(ZM0201_status[index-1][0x2D-0x20])<<16) + ZM0201_status[index-1][46-0x20]);
+                mb_mapping->tab_registers[20*(index-1)+4] = raw32_to_int(((rt_uint32_t)(ZM0201_status[index-1][0x39-0x20])<<16) + ZM0201_status[index-1][0x3A-0x20]);
+                mb_mapping->tab_registers[20*(index-1)+5] = raw32_to_int(((rt_uint32_t)(ZM0201_status[index-1][0x45-0x20])<<16) + ZM0201_status[index-1][0x46-0x20]);
+
+                mb_mapping->tab_registers[20*(index-1)+6] = raw32_to_int_4point(((rt_uint32_t)(ZM0201_status[index-1][0x2F-0x20])<<16) + ZM0201_status[index-1][0x30-0x20]);
+                mb_mapping->tab_registers[20*(index-1)+7] = raw32_to_int_4point(((rt_uint32_t)(ZM0201_status[index-1][0x3B-0x20])<<16) + ZM0201_status[index-1][0x3C-0x20]);
+                mb_mapping->tab_registers[20*(index-1)+8] = raw32_to_int_4point(((rt_uint32_t)(ZM0201_status[index-1][0x47-0x20])<<16) + ZM0201_status[index-1][0x48-0x20]);
+                mb_mapping->tab_registers[20*(index-1)+9] = raw32_to_int_4point(((rt_uint32_t)(ZM0201_status[index-1][0x31-0x20])<<16) + ZM0201_status[index-1][0x32-0x20]);
+                mb_mapping->tab_registers[20*(index-1)+10] = raw32_to_int_4point(((rt_uint32_t)(ZM0201_status[index-1][0x3D-0x20])<<16) + ZM0201_status[index-1][62-0x20]);
+                mb_mapping->tab_registers[20*(index-1)+11] = raw32_to_int_4point(((rt_uint32_t)(ZM0201_status[index-1][0x49-0x20])<<16) + ZM0201_status[index-1][0x4A-0x20]);
+
+                mb_mapping->tab_registers[20*(index-1)+12] = raw16_to_int(ZM0201_status[index-1][0x33-0x20]);
+                mb_mapping->tab_registers[20*(index-1)+13] = raw16_to_int(ZM0201_status[index-1][0x3F-0x20]);
+                mb_mapping->tab_registers[20*(index-1)+14] = raw16_to_int(ZM0201_status[index-1][0x4B-0x20]);
+
+                mb_mapping->tab_registers[20*(index-1)+15] = raw32_to_int_4point(((rt_uint32_t)(ZM0201_status[index-1][0x24-0x20])<<16) + ZM0201_status[index-1][0x25-0x20]);
+                mb_mapping->tab_registers[20*(index-1)+16] = raw32_to_int_4point(((rt_uint32_t)(ZM0201_status[index-1][0x26-0x20])<<16) + ZM0201_status[index-1][0x27-0x20]);
+                mb_mapping->tab_registers[20*(index-1)+17] = raw16_to_int(ZM0201_status[index-1][0x4C-0x20]);
             }
+			rt_thread_mdelay(10);
         }
         rt_thread_mdelay(10000);
     }
