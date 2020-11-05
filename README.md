@@ -7,7 +7,7 @@
  * @LastEditTime: 2020-10-30 03:27:34
 -->
 # ModbusHUB
-[![Build Status](https://travis-ci.com/JassyL/ModbusHUB.svg?branch=master)](https://travis-ci.com/JassyL/ModbusHUB)
+![CI](https://github.com/Team-Embedded/ModbusHUB/workflows/CI/badge.svg)
 [![](https://img.shields.io/badge/LICENSE-Apache-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 ## 简介
 
