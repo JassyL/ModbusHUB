@@ -33,8 +33,8 @@ jobs:
       - name: Run a multi-line script
         run: |
           sudo apt-get -qq install gcc-multilib libsdl-dev scons || true
-          [ $RTT_TOOL_CHAIN = 'sourcery-arm' ] && wget -q https://github.com/RT-Thread/toolchains-ci/releases/download/arm-2017q2-v6/gcc-arm-none-eabi-6-2017-q2-update-linux.tar.bz2 && sudo tar xjf gcc-arm-none-eabi-6-2017-q2-update-linux.tar.bz2 -C /opt && export RTT_EXEC_PATH=/opt/gcc-arm-none-eabi-6-2017-q2-update/bin && /opt/gcc-arm-none-eabi-6-2017-q2-update/bin/arm-none-eabi-gcc --version || true
+          wget -q https://github.com/RT-Thread/toolchains-ci/releases/download/arm-2017q2-v6/gcc-arm-none-eabi-6-2017-q2-update-linux.tar.bz2 && sudo tar xjf gcc-arm-none-eabi-6-2017-q2-update-linux.tar.bz2 -C /opt && export RTT_EXEC_PATH=/opt/gcc-arm-none-eabi-6-2017-q2-update/bin && /opt/gcc-arm-none-eabi-6-2017-q2-update/bin/arm-none-eabi-gcc --version || true
           export RTT_ROOT=${PWD}/rt-thread
-          [ x$RTT_CC == x ] && export RTT_CC='gcc' || true
+          export RTT_CC='gcc' || true
           scons -c
           scons -C .
